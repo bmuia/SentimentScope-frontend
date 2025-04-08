@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import SuccessMessage from '../components/SuccessMessage';
 import AuthFormLayout from '../components/AuthFormLayout';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
     const [email, setEmail] = React.useState('');
@@ -14,6 +15,8 @@ function Signup() {
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
+    const navigate = useNavigate();
+
 
     const handleSignup = async (e) => {
         e.preventDefault();
@@ -33,6 +36,7 @@ function Signup() {
             });
 
             setSuccess(true);
+            navigate('/');
         } catch (err) {
             if (err.response?.data?.email) {
                 setError(err.response.data.email[0]);

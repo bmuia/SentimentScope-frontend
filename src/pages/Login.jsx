@@ -14,7 +14,7 @@ function Login() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const { login } = useAuth(); // Get login function from context
+    const { login } = useAuth(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ function Login() {
         setSuccess(false);
 
         try {
-            const response = await axios.post(`${API_URL}/api/accounts/login/`, {
+            const response = await axios.post(`${API_URL}api/accounts/login/`, {
                 email,
                 password,
             });
@@ -50,7 +50,7 @@ function Login() {
         setSuccess(false);
 
         try {
-            const response = await axios.post(`${API_URL}/api/accounts/guest/`, {});
+            const response = await axios.post(`${API_URL}api/accounts/guest/`, {});
             const { access, refresh } = response.data;
             login(access, refresh); // Using context's login function for guest login
             setSuccess(true);
